@@ -1,0 +1,118 @@
+;; Kanata config converted from Glove80 ZMK config
+;; Homerow mods on QWERTY row (Q,W,E,R / U,I,O,P)
+;; Layer toggles on home row (S,D,F,G / J,K,L)
+;; Config for 16" MacBook with physical fn keys
+
+(defsrc
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab   q     w     e     r     t     y     u     i     o     p     [     ]     ret
+  caps  a     s     d     f     g     h     j     k     l     ;     '     \
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              spc                 ralt  rmet
+)
+
+(defvar
+  ;; Based on ZMK config: tapping-term-ms = 230, quick-tap-ms = 175
+  tap-time 175
+  hold-time 230
+)
+
+(defalias
+  meh  (multi lctl lalt lsft)
+  tmeh (tap-hold $tap-time $hold-time spc @meh)
+
+  ;; Homerow mods on QWERTY row (top letter row)
+  ;; Left hand: Q=LCTRL, W=LSHFT, E=LALT, R=LGUI
+  q (tap-hold $tap-time $hold-time q lctl)
+  w (tap-hold $tap-time $hold-time w lsft)
+  e (tap-hold $tap-time $hold-time e lalt)
+  r (tap-hold $tap-time $hold-time r lmet)
+
+  ;; Right hand: U=RGUI, I=RALT, O=RSHFT, P=RCTRL
+  u (tap-hold $tap-time $hold-time u rmet)
+  i (tap-hold $tap-time $hold-time i ralt)
+  o (tap-hold $tap-time $hold-time o rsft)
+  p (tap-hold $tap-time $hold-time p rctl)
+
+  ;; Layer toggles on home row
+  ;; Left hand: S=layer3, D=layer2, F=layer1, G=layer4
+  s (tap-hold $tap-time $hold-time s (layer-toggle three))
+  d (tap-hold $tap-time $hold-time d (layer-toggle two))
+  f (tap-hold $tap-time $hold-time f (layer-toggle one))
+  g (tap-hold $tap-time $hold-time g (layer-toggle numpad))
+
+  ;; Right hand: J=layer1, K=layer2, L=layer3
+  j (tap-hold $tap-time $hold-time j (layer-toggle one))
+  k (tap-hold $tap-time $hold-time k (layer-toggle two))
+  l (tap-hold $tap-time $hold-time l (layer-toggle three))
+
+  ;; Media and function key aliases
+  bdn 🔅
+  bup 🔆
+  prv ◀◀
+  pp  ▶⏸
+  nxt ▶▶
+  mut 🔇
+  vdn 🔉
+  vup 🔊
+
+  ;; Tap-dance: single tap = copy, double tap = paste
+  cpypst (tap-dance 200 (M-c M-v))
+
+  ;; Exclamation/Question mark: tap = !, hold = ?
+  exclq (tap-hold $tap-time $hold-time S-1 S-/)
+)
+
+(deflayer base
+  esc   @bdn  @bup  f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  _     1     2     3     4     5     6     7     8     9     0     -     =     XX
+  tab   @q    @w    @e    @r    t     y     @u    @i    @o    @p    [     ]     XX
+  esc   a     @s    @d    @f    @g    h     @j    @k    @l    ;     '     \
+  lsft  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt              @tmeh               rctl  rmet
+)
+
+(deflayer one
+  _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     -     prev  next  pp    _     _     _     _
+  _     _     esc   C-S-tab C-tab _   volu  @cpypst up  bspc  M-v   _     _     _
+  _     _     del   M-[   M-]   _     vold  left  down  rght  ret   _     _
+  _     _     _     M-S-[ M-S-] _     mute  _     _     _     _     _
+  _     _     _                 _                   _     _
+)
+
+(deflayer two
+  _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     A-3   S-3   S-4   _     _     S-,   S-.   S-6   _     _     _     _
+  _     grv   S-grv -     \     +     =     [     ]     S-\   /     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _                 _                   _     _
+)
+
+(deflayer three
+  _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     S-2   A-]   A-[   _     _     S-9   S-0   ;     _     _     _     _
+  _     S-8   S-5   @exclq S-'  _     _     S-[   S-]   S-7   S-;   _     _
+  _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _                 _                   _     _
+)
+
+(deflayer numpad
+  _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     7     8     9     _     _     _     _
+  _     _     _     _     _     _     _     4     5     6     _     _     _
+  _     _     _     _     _     _     _     1     2     3     _     _
+  _     _     _                 _                 0     _
+)
+
+;; ignore bluetooth devices that can give basic keyboard commands and therefore break
+(defcfg
+  macos-dev-names-exclude (
+    "MX Master 2S",
+    "MX Vertical"
+  )
+)

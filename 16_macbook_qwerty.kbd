@@ -1,0 +1,94 @@
+;; Config for 16" MacBook with physical fn keys. This conf allows for brightness etc to still work.
+(defsrc
+  esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  IntlBackslash  1    2    3    4    5       6    7    8    9    0       -    =    bspc
+  tab            q    w    e    r    t       y    u    i    o    p       [    ]    ret
+  caps           a    s    d    f    g       h    j    k    l    ;       '    \
+  lsft   `       z    x    c    v    b       n    m    ,    .    /       rsft
+  lctl           lalt lmet          spc            rmet ralt
+)
+
+(defvar
+  ;; Based on Glove80 ZMK config: tapping-term-ms = 230, quick-tap-ms = 175
+  tap-time 175
+  hold-time 230
+)
+
+(defalias
+  ;; Homerow mods on QWERTY row (matching Glove80)
+  ;; Left hand: Q=LCTRL, W=LSHFT, E=LALT, R=LGUI
+  q (tap-hold $tap-time $hold-time q lctl)
+  w (tap-hold $tap-time $hold-time w lsft)
+  e (tap-hold $tap-time $hold-time e lalt)
+  r (tap-hold $tap-time $hold-time r lmet)
+
+  ;; Right hand: U=RGUI, I=RALT, O=RSHFT, P=RCTRL
+  u (tap-hold $tap-time $hold-time u rmet)
+  i (tap-hold $tap-time $hold-time i ralt)
+  o (tap-hold $tap-time $hold-time o rsft)
+  p (tap-hold $tap-time $hold-time p rctl)
+
+  ;; Layer toggles on home row (matching Glove80)
+  ;; Left hand: S=layer3 (symbols2), D=layer2 (symbols1), F=layer1 (nav), G=numpad
+  s (tap-hold $tap-time $hold-time s (layer-toggle symbols2))
+  d (tap-hold $tap-time $hold-time d (layer-toggle symbols1))
+  f (tap-hold $tap-time $hold-time f (layer-toggle nav))
+  g (tap-hold $tap-time $hold-time g (layer-toggle num))
+
+  ;; Right hand: J=layer1 (nav), K=layer2 (symbols1), L=layer3 (symbols2)
+  j (tap-hold $tap-time $hold-time j (layer-toggle nav))
+  k (tap-hold $tap-time $hold-time k (layer-toggle symbols1))
+  l (tap-hold $tap-time $hold-time l (layer-toggle symbols2))
+
+  ;; MacBook-specific function keys
+  mc C-up ;; Mission Control
+  sls M-spc ;; Spotlight Search
+  dtn S-C-A-M-f5 ;; Dictation
+  dnd S-C-A-M-f6 ;; Do Not Disturb
+  lp S-C-A-M-l ;; Launchpad
+)
+;; Removed chords - using simple tap-hold for Glove80-style layout
+
+
+(deflayer qwerty
+  esc     🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  XX        1     2      3         4         5     6           7     8      9     0     -    =     bspc
+  tab       @q    @w     @e        @r        t     y           @u    @i     @o    @p    XX   XX    ret
+  esc       a     @s     @d        @f        @g    h           @j    @k     @l    ;     '    XX
+  XX   XX   z     x      c         v         b     n           m     ,      .     /     XX
+  XX   XX   XX          spc       XX XX
+)
+
+(deflayer nav
+  esc     🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  XX   XX   XX     XX        XX        XX       XX       XX     XX    XX      XX     XX    XX    XX
+  XX   _    esc    C-S-tab   C-tab     XX       volu     M-c    up    bspc    M-v    XX    XX    XX
+  XX   _    del    M-[       M-]       XX       vold     left   down  right   ret    XX    XX
+  XX   XX   XX     XX        M-S-[     M-S-]    XX       mute   XX    XX      XX     XX    XX
+  XX   XX   XX               spc                XX XX
+)
+
+(deflayer symbols1
+  esc     🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  XX   XX    XX    XX    XX    XX      XX      XX    XX    XX    XX     XX    XX    XX
+  XX   _     A-3   S-3   S-4   XX      XX      S-,   S-.   S-6   XX     XX    XX    XX
+  XX   grv   S-grv -     \     +       =       [     ]     S-\   /      XX    XX
+  XX   XX    XX    XX    XX    XX      XX      _     XX    XX    XX     XX    XX
+  XX   XX   XX            spc           XX XX
+)
+(deflayer symbols2
+  esc     🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  XX   XX    XX    XX     XX        XX      XX    XX    XX    XX     XX    XX    XX    XX
+  XX   _     S-2   A-]    A-[       XX      XX    S-9   S-0   ;      XX    XX    XX    XX
+  XX   S-8   S-5   S-1    S-'       XX      XX    S-[   S-]   S-7    S-;   XX    XX
+  XX   XX    XX    XX     XX        XX      XX    _     XX    XX     XX    XX    XX
+  XX   XX   XX            spc               XX XX
+)
+(deflayer num
+  esc     🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  XX   XX    XX   XX     XX     XX       XX    XX    XX    XX    XX    XX    XX    XX
+  XX   _     XX   XX     XX     XX       XX    7     8     9     0     XX    XX    XX
+  XX   XX    XX   XX     XX     XX       XX    4     5     6     .     XX    XX
+  XX   XX    XX   XX     XX     XX       XX    1     2     3     XX    XX
+  XX   XX   XX           spc            XX XX
+)
