@@ -66,8 +66,8 @@
 
 (deflayer base
   esc   @bdn  @bup  f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
-  _     1     2     3     4     5     6     7     8     9     0     -     =     XX
-  tab   @q    @w    @e    @r    t     y     @u    @i    @o    @p    [     ]     XX
+  _     1     2     3     4     5     6     7     8     9     0     -     =     _
+  tab   @q    @w    @e    @r    t     y     @u    @i    @o    @p    [     ]     _
   esc   a     @s    @d    @f    @g    h     @j    @k    @l    ;     '     \
   lsft  z     x     c     v     b     n     m     ,     .     /     rsft
   lctl  lmet  lalt              @tmeh               rctl  rmet
@@ -94,7 +94,7 @@
 (deflayer three
   _     _     _     _     _     _     _     _     _     _     _     _     _
   _     _     _     _     _     _     _     _     _     _     _     _     _     _
-  _     _     S-2   A-]   A-[   _     _     S-9   S-0   ;     _     _     _     _
+  _     _     S-2   S-/   _   _     _     S-9   S-0   ;     _     _     _     _
   _     S-8   S-5   @exclq S-'  _     _     S-[   S-]   S-7   S-;   _     _
   _     _     _     _     _     _     _     _     _     _     _     _
   _     _     _                 _                   _     _
