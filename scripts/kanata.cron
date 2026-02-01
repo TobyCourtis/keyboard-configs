@@ -1,2 +1,0 @@
-# Add to root crontab with: sudo crontab -e
-* * * * * pgrep -x kanata > /dev/null || /opt/homebrew/bin/kanata --cfg /Users/tcourtis/repos/keyboard-configs/glove80.kbd &
