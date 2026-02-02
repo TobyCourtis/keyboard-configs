@@ -1,2 +1,2 @@
 # Add to root crontab with: sudo crontab -e
-* * * * * pgrep -x kanata > /dev/null || /opt/homebrew/bin/kanata --cfg /Users/tcourtis/repos/keyboard-configs/glove80.kbd &
+* * * * * pgrep -x kanata > /dev/null || sudo tmux new -d -s kanata '/opt/homebrew/bin/kanata --cfg /Users/tobyc/Documents/repos/scripts/src/kanata/glove80.kbd'
