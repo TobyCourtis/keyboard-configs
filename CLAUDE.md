@@ -5,10 +5,11 @@ This repository contains Kanata keyboard configurations for macOS, originally po
 
 ## Files
 - `glove80.kbd` - Main Kanata config (QWERTY with Glove80-style homerow mods)
-- `16_macbook_qwerty.kbd` - QWERTY variant for 16" MacBook Pro
-- `16_macbook.kbd` - Colemak-DH variant for 16" MacBook Pro
-- `glove80.zmk` - Original Glove80 ZMK config (reference)
 - `kanata.cron` - Cron job for auto-restart on crash
+- `reference/` - Reference configs (not actively used):
+  - `16_macbook_qwerty.kbd` - QWERTY variant for 16" MacBook Pro
+  - `16_macbook.kbd` - Colemak-DH variant for 16" MacBook Pro
+  - `glove80.zmk` - Original Glove80 ZMK config
 
 ## Hardware Target
 - Configured for **16" MacBook Pro** with physical function keys
