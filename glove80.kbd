@@ -64,11 +64,26 @@
   exclq (tap-hold $tap-time $hold-time S-1 S-/)
 )
 
+;; Chords (combos) - ZSA default timeout: 50ms
+(defchords chordgame 50
+  ;; Combos
+  (j k) ret   ;; jk together = Enter
+  (f d) tab   ;; fd together = Tab
+  (s d) esc   ;; sd together = Escape
+
+  ;; Solo key behaviors (preserve original tap-hold from aliases)
+  (s ) (tap-hold $tap-time $hold-time s (layer-toggle three))
+  (d ) (tap-hold $tap-time $hold-time d (layer-toggle two))
+  (f ) (tap-hold $tap-time $hold-time f (layer-toggle one))
+  (j ) (tap-hold $tap-time $hold-time j (layer-toggle one))
+  (k ) (tap-hold $tap-time $hold-time k (layer-toggle two))
+)
+
 (deflayer base
   esc   @bdn  @bup  f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     1     2     3     4     5     6     7     8     9     0     -     =     _
   tab   @q    @w    @e    @r    t     y     @u    @i    @o    @p    [     ]     _
-  esc   a     @s    @d    @f    @g    h     @j    @k    @l    ;     '     \
+  esc   a     (chord chordgame s)    (chord chordgame d)    (chord chordgame f)    @g    h     (chord chordgame j)    (chord chordgame k)    @l    ;     '     \
   lsft  z     x     c     v     b     n     m     ,     .     /     rsft
   lctl  lmet  lalt              @tmeh               rctl  rmet
 )
