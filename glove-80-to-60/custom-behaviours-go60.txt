@@ -1,0 +1,84 @@
+behaviors {
+as: auto_shift {
+        compatible = "zmk,behavior-hold-tap";
+        label = "AUTO_SHIFT";
+        #binding-cells = <2>;
+        tapping_term_ms = <200>;
+        quick_tap_ms = <0>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+    };
+    ht: hold_tap{
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOLD_TAP";
+        #binding-cells = <2>;
+        tapping-term-ms = <125>;
+        quick_tap_ms = <0>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+    };
+    me: multi_equal {
+        compatible = "zmk,behavior-tap-dance";
+        label = "MULTI_EQUAL";
+        #binding-cells = <0>;
+        tapping-term-ms = <125>;
+        bindings = <&ht LG(EQUAL) EQUAL>, <&kp LS(EQUAL)>;
+    };
+    mm: multi_minus {
+        compatible = "zmk,behavior-tap-dance";
+        label = "MULTI_MINUS";
+        #binding-cells = <0>;
+        tapping-term-ms = <125>;
+        bindings = <&ht LG(MINUS) MINUS>, <&kp LA(LS(MINUS))>;
+    };
+    cpy: copy_paste  {
+        compatible = "zmk,behavior-tap-dance";
+        label = "CPY_PST";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp LG(C)>, <&kp LG(V)>;
+    };
+#define LEFT_HAND_KEYS      \
+          0  1  2  3  4  5      \
+         12 13 14 15 16 17      \
+         24 25 26 27 28 29      \
+         36 37 38 39 40 41      \
+               48 49 50
+    #define                              RIGHT_HAND_KEYS \
+                                        6  7  8  9 10 11 \
+                                       18 19 20 21 22 23 \
+                                       30 31 32 33 34 35 \
+                                       42 43 44 45 46 47 \
+                                          51 52 53
+    #define THUMB_KEYS          \
+                        54 55 56   57 58 59
+
+    #define QUICK_TAP_MS 175
+    #define TAPPING_TERM_MS 230
+
+hml: homerow_mods_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS_LEFT";
+        #binding-cells = <2>;
+        tapping-term-ms = <TAPPING_TERM_MS>;
+        quick_tap_ms = <QUICK_TAP_MS>;
+        global-quick-tap;
+        flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+        hold-trigger-on-release;
+    };
+
+    hmr: homerow_mods_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS_RIGHT";
+        #binding-cells = <2>;
+        tapping-term-ms = <TAPPING_TERM_MS>;
+        quick_tap_ms = <QUICK_TAP_MS>;
+        global-quick-tap;
+        flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+        hold-trigger-on-release;
+    };
+};
