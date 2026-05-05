@@ -90,7 +90,7 @@
 
 (deflayer one
   _     _     _     _     _     _     _     _     _     _     _     _     _
-  _     _     _     _     _     _     -     prev  next  pp    _     _     _     _
+  _     _     _     _     _     _     prev  pp    next  _     _     _     _     _
   _     _     esc   C-S-tab C-tab _   volu  @cpypst up  bspc  M-v   _     _     _
   _     _     del   M-[   M-]   _     vold  left  down  rght  ret   _     _
   _     _     _     M-S-[ M-S-] _     mute  _     _     _     _     _
